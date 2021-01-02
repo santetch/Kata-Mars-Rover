@@ -1,0 +1,26 @@
+{
+  "name": "onboarding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require @babel/polyfill --require @babel/register --require ./tests_enhacement.js --recursive",
+    "start": "cd web && npm run start",
+    "postinstall": "cd web && npm install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/register": "^7.9.0",
+    "nyc": "^15.1.0",
+    "sinon-chai": "^3.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2",
+    "sinon": "^9.0.2"
+  }
+}
