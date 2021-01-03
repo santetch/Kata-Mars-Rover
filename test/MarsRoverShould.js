@@ -2,6 +2,8 @@ import {expect} from "chai";
 import directions from "../core/Directions";
 import Position from "../core/Position";
 import MarsRover from "../core/MarsRover";
+import Move from "../core/actions/Move";
+import Rotate from "../core/actions/Rotate";
 
 const {mock} = global;
 
@@ -10,6 +12,9 @@ describe('Mars Rover should', () => {
     let direction;
     let position;
     let finalPosition;
+
+    let move;
+    let rotate;
 
     let rover;
     let roverPosition;
@@ -116,10 +121,6 @@ describe('Mars Rover should', () => {
         });
     });
 
-    function givenAMarsRover() {
-        rover = new MarsRover(position);
-    }
-
     context(',when facing West ,', () => {
         it('move forward from position (521,50) to (520,50)', () => {
             givenAWestDirection();
@@ -128,9 +129,9 @@ describe('Mars Rover should', () => {
 
             givenAMarsRover();
 
-            rover.moveForward();
+            whenMovesForward();
 
-            roverPosition = rover.getPosition();
+            whenRetrievesItsPosition();
             thenMoves();
         });
 
@@ -141,12 +142,20 @@ describe('Mars Rover should', () => {
 
             givenAMarsRover();
 
-            rover.moveBackward();
+            whenMovesBackward();
 
-            roverPosition = rover.getPosition();
+            whenRetrievesItsPosition();
             thenMoves();
         });
     });
+
+
+    function givenAMarsRover() {
+        move = new Move();
+        rotate = new Rotate();
+
+        rover = new MarsRover(position, move, rotate);
+    }
 
     function givenANorthDirection() {
         direction = directions.NORTH;

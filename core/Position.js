@@ -6,19 +6,19 @@ class Position {
     }
 
     increaseY() {
-        this.y++;
+        return new Position(this.x, this.y + 1, this.direction)
     }
 
     increaseX() {
-        this.x++;
+        return new Position(this.x + 1, this.y, this.direction);
     }
 
     decreaseY() {
-        this.y--;
+        return new Position(this.x, this.y - 1, this.direction);
     }
 
     decreaseX() {
-        this.x--;
+        return new Position(this.x - 1, this.y, this.direction);
     }
 
 }

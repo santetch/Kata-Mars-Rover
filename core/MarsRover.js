@@ -1,8 +1,8 @@
-import directions from "../core/Directions";
-
 class MarsRover {
-    constructor(position) {
+    constructor(position, move, rotate) {
         this.position = position;
+        this.move = move;
+        this.rotate = rotate;
     }
 
     getPosition() {
@@ -10,37 +10,11 @@ class MarsRover {
     }
 
     moveForward() {
-        switch (this.position.direction) {
-            case directions.NORTH:
-                this.position.increaseY();
-                break;
-            case directions.SOUTH:
-                this.position.decreaseY();
-                break;
-            case directions.EAST:
-                this.position.increaseX();
-                break;
-            case directions.WEST:
-                this.position.decreaseX();
-                break;
-        }
+        this.position = this.move.forward(this.position);
     }
 
     moveBackward() {
-        switch (this.position.direction) {
-            case directions.NORTH:
-                this.position.decreaseY();
-                break;
-            case directions.SOUTH:
-                this.position.increaseY();
-                break;
-            case directions.EAST:
-                this.position.decreaseX();
-                break;
-            case directions.WEST:
-                this.position.increaseX();
-                break;
-        }
+        this.position = this.move.backward(this.position);
     }
 }
 
