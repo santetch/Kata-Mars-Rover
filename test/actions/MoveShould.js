@@ -1,52 +1,29 @@
+import directions from "../../core/domain/Directions";
+import Position from "../../core/domain/Position";
 import {expect} from "chai";
-import directions from "../core/Directions";
-import Position from "../core/Position";
-import MarsRover from "../core/MarsRover";
-import Move from "../core/actions/Move";
-import Rotate from "../core/actions/Rotate";
+import Move from "../../core/actions/Move";
 
-const {mock} = global;
+describe('Move Should', () => {
+    let move;
 
-
-describe('Mars Rover should', () => {
     let direction;
     let position;
     let finalPosition;
-
-    let move;
-    let rotate;
-
-    let rover;
-    let roverPosition;
+    let destinationPosition;
 
     beforeEach(() => {
 
-    });
-
-    context(' ', () => {
-         it('retrieve its position', () => {
-             givenANorthDirection();
-             givenAPosition(1, 1);
-
-             givenAMarsRover();
-
-             whenRetrievesItsPosition();
-
-             thenRetrievesItsPosition();
-         });
     });
 
     context(',when facing North ,', () => {
         it('move forward from position (10,642) to (10,643)', () => {
             givenANorthDirection();
             givenAPosition(10, 642);
-            givenAFinalPosition(10, 643);
+            givenADestinationPosition(10, 643);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesForward();
-
-            whenRetrievesItsPosition();
 
             thenMoves();
         });
@@ -54,13 +31,12 @@ describe('Mars Rover should', () => {
         it('move backwards from position (10,642) to (10,641)', () => {
             givenANorthDirection();
             givenAPosition(10, 642);
-            givenAFinalPosition(10, 641);
+            givenADestinationPosition(10, 641);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesBackward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
     });
@@ -69,26 +45,24 @@ describe('Mars Rover should', () => {
         it('move forward from position (10,642) to (10,641)', () => {
             givenASouthDirection();
             givenAPosition(10, 642);
-            givenAFinalPosition(10, 641);
+            givenADestinationPosition(10, 641);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesForward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
 
         it('move backwards from position (10,642) to (10,643)', () => {
             givenASouthDirection();
             givenAPosition(10, 642);
-            givenAFinalPosition(10, 643);
+            givenADestinationPosition(10, 643);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesBackward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
     });
@@ -97,26 +71,24 @@ describe('Mars Rover should', () => {
         it('move forward from position (521,50) to (522,50)', () => {
             givenAnEastDirection();
             givenAPosition(521, 50);
-            givenAFinalPosition(522, 50);
+            givenADestinationPosition(522, 50);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesForward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
 
         it('move backwards from position (521,50) to (520,50)', () => {
             givenAnEastDirection();
             givenAPosition(521, 50);
-            givenAFinalPosition(520, 50);
+            givenADestinationPosition(520, 50);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesBackward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
     });
@@ -125,36 +97,30 @@ describe('Mars Rover should', () => {
         it('move forward from position (521,50) to (520,50)', () => {
             givenAWestDirection();
             givenAPosition(521, 50);
-            givenAFinalPosition(520, 50);
+            givenADestinationPosition(520, 50);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesForward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
 
         it('move backwards from position (521,50) to (522,50)', () => {
             givenAWestDirection();
             givenAPosition(521, 50);
-            givenAFinalPosition(522, 50);
+            givenADestinationPosition(522, 50);
 
-            givenAMarsRover();
+            givenAMoveAction();
 
             whenMovesBackward();
 
-            whenRetrievesItsPosition();
             thenMoves();
         });
     });
 
-
-    function givenAMarsRover() {
+    function givenAMoveAction() {
         move = new Move();
-        rotate = new Rotate();
-
-        rover = new MarsRover(position, move, rotate);
     }
 
     function givenANorthDirection() {
@@ -177,27 +143,19 @@ describe('Mars Rover should', () => {
         position = new Position(x, y, direction);
     }
 
-    function givenAFinalPosition(x, y) {
-        finalPosition = new Position(x, y, direction);
-    }
-
-    function whenRetrievesItsPosition() {
-        roverPosition = rover.getPosition();
+    function givenADestinationPosition(x, y) {
+        destinationPosition = new Position(x, y, direction);
     }
 
     function whenMovesForward() {
-        rover.moveForward();
+        finalPosition = move.forward(position);
     }
 
     function whenMovesBackward() {
-        rover.moveBackward();
-    }
-
-    function thenRetrievesItsPosition() {
-        expect(position).be.eql(roverPosition);
+        finalPosition = move.backward(position);
     }
 
     function thenMoves() {
-        expect(finalPosition).be.eql(roverPosition);
+        expect(finalPosition).be.eql(destinationPosition);
     }
 });

@@ -1,4 +1,4 @@
-import directions from "../Directions";
+import directions from "../domain/Directions";
 
 class Move {
     constructor() {
