@@ -99,8 +99,8 @@ Define a map of 10x10 and if one edge is passed starts on the opposite edge
 
 
 ##Step 5
-The can has obstables in certain positions.
-If the robot is gonna move into an obstable, it stops and reports the error
+The can has obstacles in certain positions.
+If the robot is going to move into an obstacle, it stops and reports the error
 
     Test case:
         obstable in x=2, y=3

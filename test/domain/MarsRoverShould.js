@@ -11,6 +11,7 @@ describe('Mars Rover should', () => {
     let direction;
     let position;
     let map;
+    let obstacles = [];
 
     let move;
     let turn;
@@ -101,7 +102,7 @@ describe('Mars Rover should', () => {
     }
 
     function givenAMarsMap(x, y) {
-        map = new MarsMap(x, y);
+        map = new MarsMap(x, y, obstacles);
     }
 
     function whenRetrievesItsPosition() {

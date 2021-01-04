@@ -8,13 +8,15 @@ describe('Move Should', () => {
     let move;
 
     let map;
+    let obstacles = [];
     let direction;
     let position;
     let finalPosition;
     let destinationPosition;
+    let presenter;
 
     beforeEach(() => {
-
+        presenter = mock('showError');
     });
 
     context(', when facing North,', () => {
@@ -214,7 +216,7 @@ describe('Move Should', () => {
     }
 
     function givenAMarsMap(x, y) {
-        map = new MarsMap(x, y);
+        map = new MarsMap(x, y, obstacles, presenter);
     }
 
     function whenMovesForward() {
