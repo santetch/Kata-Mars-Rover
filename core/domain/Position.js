@@ -1,24 +1,29 @@
 class Position {
-    constructor(x, y, direction) {
+    constructor(x, y, direction, map) {
         this.x = x;
         this.y = y;
         this.direction = direction;
+        this.map = map;
     }
 
     increaseY() {
-        return new Position(this.x, this.y + 1, this.direction)
+        const newY = this.map.increaseY(this.y);
+        return new Position(this.x, newY, this.direction, this.map);
     }
 
     increaseX() {
-        return new Position(this.x + 1, this.y, this.direction);
+        const newX = this.map.increaseX(this.x);
+        return new Position(newX, this.y, this.direction, this.map);
     }
 
     decreaseY() {
-        return new Position(this.x, this.y - 1, this.direction);
+        const newY = this.map.decreaseY(this.y);
+        return new Position(this.x, newY, this.direction, this.map);
     }
 
     decreaseX() {
-        return new Position(this.x - 1, this.y, this.direction);
+        const newX = this.map.decreaseX(this.x);
+        return new Position(newX, this.y, this.direction, this.map);
     }
 
 }

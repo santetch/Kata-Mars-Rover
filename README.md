@@ -89,12 +89,12 @@ Define a map of 10x10 and if one edge is passed starts on the opposite edge
         position.direction == E
 
     Test case 2:
-        robot in position x=4, y=9 and direction North
+        robot in position x=4, y=0 and direction North
 
         robot.moveBackwards
 
         position.x == 4
-        position.y == 0
+        position.y == 9
         position.direction == N
 
 

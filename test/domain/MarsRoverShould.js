@@ -2,6 +2,7 @@ import {expect} from "chai";
 import directions from "../../core/domain/Directions";
 import Position from "../../core/domain/Position";
 import MarsRover from "../../core/domain/MarsRover";
+import MarsMap from "../../core/domain/MarsMap";
 
 const {mock} = global;
 
@@ -9,6 +10,7 @@ const {mock} = global;
 describe('Mars Rover should', () => {
     let direction;
     let position;
+    let map;
 
     let move;
     let turn;
@@ -22,6 +24,7 @@ describe('Mars Rover should', () => {
     });
 
      it('retrieve its position', () => {
+         givenAMarsMap(1000, 1000);
          givenANorthDirection();
          givenAPosition(1, 1);
 
@@ -34,6 +37,7 @@ describe('Mars Rover should', () => {
 
     context('move ', () => {
         it('forward',() => {
+            givenAMarsMap(1000, 1000);
             givenANorthDirection();
             givenAPosition(1, 1);
 
@@ -45,6 +49,7 @@ describe('Mars Rover should', () => {
         });
 
         it('backward',() => {
+            givenAMarsMap(1000, 1000);
             givenANorthDirection();
             givenAPosition(1, 1);
 
@@ -58,6 +63,7 @@ describe('Mars Rover should', () => {
 
     context('turn ', () => {
         it('to the right',() => {
+            givenAMarsMap(1000, 1000);
             givenANorthDirection();
             givenAPosition(1, 1);
 
@@ -69,6 +75,7 @@ describe('Mars Rover should', () => {
         });
 
         it('to the left',() => {
+            givenAMarsMap(1000, 1000);
             givenANorthDirection();
             givenAPosition(1, 1);
 
@@ -90,7 +97,11 @@ describe('Mars Rover should', () => {
     }
 
     function givenAPosition(x, y) {
-        position = new Position(x, y, direction);
+        position = new Position(x, y, direction, map);
+    }
+
+    function givenAMarsMap(x, y) {
+        map = new MarsMap(x, y);
     }
 
     function whenRetrievesItsPosition() {
