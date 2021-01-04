@@ -7,35 +7,35 @@ class MarsMap {
     }
 
     increaseY(position) {
-        return this.lookForObstacles(position.y + 1, position.x) ? position.y : this.calculateTopBorder(position);
+        return this.lookForObstacles(position.getY() + 1, position.getX()) ? position.getY() : this.calculateTopBorder(position);
     }
 
     decreaseY(position) {
-        return this.lookForObstacles(position.y - 1, position.x) ? position.y : this.calculateBottomBorder(position);
+        return this.lookForObstacles(position.getY() - 1, position.getX()) ? position.getY() : this.calculateBottomBorder(position);
     }
 
     increaseX(position) {
-        return this.lookForObstacles(position.y, position.x + 1) ? position.x : this.calculateRightBorder(position);
+        return this.lookForObstacles(position.getY(), position.getX() + 1) ? position.getX() : this.calculateRightBorder(position);
     }
 
     decreaseX(position) {
-        return this.lookForObstacles(position.y, position.x - 1) ? position.x : this.calculateLeftBorder(position);
+        return this.lookForObstacles(position.getY(), position.getX() - 1) ? position.getX() : this.calculateLeftBorder(position);
     }
 
     calculateTopBorder(position) {
-        return position.y + 1 < this.y ? position.y + 1 : 0;
+        return position.getY() + 1 < this.y ? position.getY() + 1 : 0;
     }
 
     calculateBottomBorder(position) {
-        return position.y === 0 ? this.y - 1 : position.y - 1;
+        return position.getY() === 0 ? this.y - 1 : position.getY() - 1;
     }
 
     calculateRightBorder(position) {
-        return position.x + 1 < this.x ? position.x + 1 : 0;
+        return position.getX() + 1 < this.x ? position.getX() + 1 : 0;
     }
 
     calculateLeftBorder(position) {
-        return position.x === 0 ? this.x - 1 : position.x - 1;
+        return position.getX() === 0 ? this.x - 1 : position.getX() - 1;
     }
 
     showError() {
@@ -44,7 +44,7 @@ class MarsMap {
 
     lookForObstacles(y, x) {
         for (let obstacle of this.obstacles) {
-            if (y === obstacle.y && x === obstacle.x) {
+            if (y === obstacle.getY() && x === obstacle.getX()) {
                 this.showError();
                 return true;
             }

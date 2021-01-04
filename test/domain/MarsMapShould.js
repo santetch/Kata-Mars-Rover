@@ -3,10 +3,9 @@ import directions from "../../core/domain/Directions";
 import Position from "../../core/domain/Position";
 import MarsMap from "../../core/domain/MarsMap";
 import Move from "../../core/actions/Move";
-import Obstacle from "../../core/domain/Obstacle";
+import Coordinates from "../../core/domain/Coordinates";
 
 const {mock} = global;
-
 
 describe('Mars Map should', () => {
     let direction;
@@ -14,6 +13,7 @@ describe('Mars Map should', () => {
     let map;
     let obstacles = [];
     let finalPosition;
+    let coordinates;
 
     let move;
 
@@ -69,12 +69,13 @@ describe('Mars Map should', () => {
     }
 
     function givenAPosition(x, y) {
-        position = new Position(x, y, direction, map);
+        coordinates = new Coordinates(x, y);
+        position = new Position(direction, map, coordinates);
     }
 
 
     function givenAnObstacleIn(x, y) {
-        obstacles.push(new Obstacle(x, y));
+        obstacles.push(new Coordinates(x, y));
     }
 
     function givenAMarsMap(x, y) {

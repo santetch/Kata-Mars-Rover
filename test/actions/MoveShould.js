@@ -3,6 +3,7 @@ import Position from "../../core/domain/Position";
 import {expect} from "chai";
 import Move from "../../core/actions/Move";
 import MarsMap from "../../core/domain/MarsMap";
+import Coordinates from "../../core/domain/Coordinates";
 
 describe('Move Should', () => {
     let move;
@@ -10,6 +11,7 @@ describe('Move Should', () => {
     let map;
     let obstacles = [];
     let direction;
+    let coordinates;
     let position;
     let finalPosition;
     let destinationPosition;
@@ -208,11 +210,13 @@ describe('Move Should', () => {
     }
 
     function givenAPosition(x, y) {
-        position = new Position(x, y, direction, map);
+        coordinates = new Coordinates(x, y);
+        position = new Position(direction, map, coordinates);
     }
 
     function givenADestinationPosition(x, y) {
-        destinationPosition = new Position(x, y, direction, map);
+        coordinates = new Coordinates(x, y);
+        destinationPosition = new Position(direction, map, coordinates);
     }
 
     function givenAMarsMap(x, y) {

@@ -21,12 +21,12 @@ class MarsRover {
 
     turnRight() {
         const newDirection = this.turn.right();
-        this.position = new Position(this.position.x, this.position.y, newDirection);
+        this.position = new Position(newDirection, this.position.getMap(), this.position.getCoordinates());
     }
 
     turnLeft() {
         const newDirection = this.turn.left();
-        this.position = new Position(this.position.x, this.position.y, newDirection);
+        this.position = new Position(newDirection, this.position.getMap(), this.position.getCoordinates());
     }
 }
 

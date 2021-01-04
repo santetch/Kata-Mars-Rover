@@ -5,4 +5,6 @@ const Directions = {
     WEST: 'W'
 }
 
+Object.freeze(Directions);
+
 export default Directions;

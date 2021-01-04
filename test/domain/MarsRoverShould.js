@@ -3,6 +3,7 @@ import directions from "../../core/domain/Directions";
 import Position from "../../core/domain/Position";
 import MarsRover from "../../core/domain/MarsRover";
 import MarsMap from "../../core/domain/MarsMap";
+import Coordinates from "../../core/domain/Coordinates";
 
 const {mock} = global;
 
@@ -12,6 +13,7 @@ describe('Mars Rover should', () => {
     let position;
     let map;
     let obstacles = [];
+    let coordinates;
 
     let move;
     let turn;
@@ -98,7 +100,8 @@ describe('Mars Rover should', () => {
     }
 
     function givenAPosition(x, y) {
-        position = new Position(x, y, direction, map);
+        coordinates = new Coordinates(x, y);
+        position = new Position(direction, map, coordinates);
     }
 
     function givenAMarsMap(x, y) {
