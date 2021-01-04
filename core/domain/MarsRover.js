@@ -1,8 +1,10 @@
+import Position from "./Position";
+
 class MarsRover {
-    constructor(position, move, rotate) {
+    constructor(position, move, turn) {
         this.position = position;
         this.move = move;
-        this.rotate = rotate;
+        this.turn = turn;
     }
 
     getPosition() {
@@ -15,6 +17,16 @@ class MarsRover {
 
     moveBackward() {
         this.position = this.move.backward(this.position);
+    }
+
+    turnRight() {
+        const newDirection = this.turn.right();
+        this.position = new Position(this.position.x, this.position.y, newDirection);
+    }
+
+    turnLeft() {
+        const newDirection = this.turn.left();
+        this.position = new Position(this.position.x, this.position.y, newDirection);
     }
 }
 

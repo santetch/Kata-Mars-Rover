@@ -15,7 +15,7 @@ describe('Move Should', () => {
 
     });
 
-    context(',when facing North ,', () => {
+    context(', when facing North,', () => {
         it('move forward from position (10,642) to (10,643)', () => {
             givenANorthDirection();
             givenAPosition(10, 642);
@@ -41,7 +41,7 @@ describe('Move Should', () => {
         });
     });
 
-    context(',when facing South ,', () => {
+    context(', when facing South,', () => {
         it('move forward from position (10,642) to (10,641)', () => {
             givenASouthDirection();
             givenAPosition(10, 642);
@@ -67,7 +67,7 @@ describe('Move Should', () => {
         });
     });
 
-    context(',when facing East ,', () => {
+    context(', when facing East,', () => {
         it('move forward from position (521,50) to (522,50)', () => {
             givenAnEastDirection();
             givenAPosition(521, 50);
@@ -93,7 +93,7 @@ describe('Move Should', () => {
         });
     });
 
-    context(',when facing West ,', () => {
+    context(', when facing West,', () => {
         it('move forward from position (521,50) to (520,50)', () => {
             givenAWestDirection();
             givenAPosition(521, 50);

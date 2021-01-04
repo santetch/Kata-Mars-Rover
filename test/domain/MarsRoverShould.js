@@ -9,32 +9,31 @@ const {mock} = global;
 describe('Mars Rover should', () => {
     let direction;
     let position;
-    let finalPosition;
 
     let move;
-    let rotate;
+    let turn;
 
     let rover;
     let roverPosition;
 
     beforeEach(() => {
         move = mock('forward', 'backward');
-        rotate = mock();
+        turn = mock('right', 'left');
     });
 
-    context('always ', () => {
-         it('retrieve its position', () => {
-             givenANorthDirection();
-             givenAPosition(1, 1);
+     it('retrieve its position', () => {
+         givenANorthDirection();
+         givenAPosition(1, 1);
 
-             givenAMarsRover();
+         givenAMarsRover();
 
-             whenRetrievesItsPosition();
+         whenRetrievesItsPosition();
 
-             thenRetrievesItsPosition();
-         });
+         thenRetrievesItsPosition();
+     });
 
-        it('move forward',() => {
+    context('move ', () => {
+        it('forward',() => {
             givenANorthDirection();
             givenAPosition(1, 1);
 
@@ -45,7 +44,7 @@ describe('Mars Rover should', () => {
             thenMovesForward();
         });
 
-        it('move backward',() => {
+        it('backward',() => {
             givenANorthDirection();
             givenAPosition(1, 1);
 
@@ -57,9 +56,33 @@ describe('Mars Rover should', () => {
         });
     });
 
+    context('turn ', () => {
+        it('to the right',() => {
+            givenANorthDirection();
+            givenAPosition(1, 1);
+
+            givenAMarsRover();
+
+            whenTurnsRight();
+
+            thenTurnsRight();
+        });
+
+        it('to the left',() => {
+            givenANorthDirection();
+            givenAPosition(1, 1);
+
+            givenAMarsRover();
+
+            whenTurnsLeft();
+
+            thenTurnsLeft();
+        });
+    });
+
 
     function givenAMarsRover() {
-        rover = new MarsRover(position, move, rotate);
+        rover = new MarsRover(position, move, turn);
     }
 
     function givenANorthDirection() {
@@ -82,6 +105,14 @@ describe('Mars Rover should', () => {
         rover.moveBackward();
     }
 
+    function whenTurnsRight() {
+        rover.turnRight();
+    }
+
+    function whenTurnsLeft() {
+        rover.turnLeft();
+    }
+
     function thenRetrievesItsPosition() {
         expect(position).be.eql(roverPosition);
     }
@@ -92,5 +123,13 @@ describe('Mars Rover should', () => {
 
     function thenMovesBackward() {
         expect(move.backward).callCount(1);
+    }
+
+    function thenTurnsRight() {
+        expect(turn.right).callCount(1);
+    }
+
+    function thenTurnsLeft() {
+        expect(turn.left).callCount(1);
     }
 });
