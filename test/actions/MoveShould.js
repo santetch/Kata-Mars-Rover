@@ -13,12 +13,14 @@ describe('Move Should', () => {
     let direction;
     let coordinates;
     let position;
+
+    let message;
     let finalPosition;
     let destinationPosition;
     let presenter;
 
     beforeEach(() => {
-        presenter = mock('showError');
+        presenter = mock('showError', 'showSuccess');
     });
 
     context(', when facing North,', () => {
@@ -46,6 +48,34 @@ describe('Move Should', () => {
             whenMovesBackward();
 
             thenMoves();
+        });
+
+        it('move forward and confirm with a message', () => {
+            givenAMarsMap(1000, 1000);
+            givenANorthDirection();
+            givenAPosition(10, 642);
+            givenADestinationPosition(10, 643);
+            message = `Successfully moved to X: ${10} | Y: ${643} | N`;
+
+            givenAMoveAction();
+
+            whenMovesForward();
+
+            thenShowSuccess(message);
+        });
+
+        it('move backwards and confirm with a message', () => {
+            givenAMarsMap(1000, 1000);
+            givenANorthDirection();
+            givenAPosition(10, 642);
+            givenADestinationPosition(10, 641);
+            message = `Successfully moved to X: ${10} | Y: ${641} | N`;
+
+            givenAMoveAction();
+
+            whenMovesBackward();
+
+            thenShowSuccess(message);
         });
     });
 
@@ -102,6 +132,32 @@ describe('Move Should', () => {
             whenMovesBackward();
 
             thenMoves();
+        });
+
+        it('move forward and confirm with a message', () => {
+            givenAMarsMap(1000, 1000);
+            givenAnEastDirection();
+            givenAPosition(521, 50);
+            message = `Successfully moved to X: ${522} | Y: ${50} | E`;
+
+            givenAMoveAction();
+
+            whenMovesForward();
+
+            thenShowSuccess(message);
+        });
+
+        it('move backwards and confirm with a message', () => {
+            givenAMarsMap(1000, 1000);
+            givenAnEastDirection();
+            givenAPosition(521, 50);
+            message = `Successfully moved to X: ${520} | Y: ${50} | E`;
+
+            givenAMoveAction();
+
+            whenMovesBackward();
+
+            thenShowSuccess(message);
         });
     });
 
@@ -233,5 +289,9 @@ describe('Move Should', () => {
 
     function thenMoves() {
         expect(finalPosition).be.eql(destinationPosition);
+    }
+
+    function thenShowSuccess(message) {
+        expect(presenter.showSuccess).calledWith(message);
     }
 });

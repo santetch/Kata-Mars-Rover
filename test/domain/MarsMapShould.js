@@ -20,12 +20,8 @@ describe('Mars Map should', () => {
     let presenter;
 
     beforeEach(() => {
-        presenter = mock('showError');
+        presenter = mock('showError', 'showSuccess');
     });
-
-    function thenShowsError() {
-        expect(presenter.showError).callCount(1);
-    }
 
     context(' given an obstacle in front', () => {
         it('and facing North, report the error', () => {
@@ -84,6 +80,10 @@ describe('Mars Map should', () => {
 
     function whenMovesForward() {
         finalPosition = move.forward(position);
+    }
+
+    function thenShowsError() {
+        expect(presenter.showError).callCount(1);
     }
 
 });
